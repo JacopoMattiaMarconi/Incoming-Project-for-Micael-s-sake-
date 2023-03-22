@@ -1,9 +1,9 @@
 <h3>Elicitation</h3>
 <ul>
-  \t<li>Discovery</li>
-  \t<li>Classification and organization</li>
-  \t<li>Prioritization and negotiation</li>
-  \t<li>Specification</li>
+  <li>Discovery</li>
+  <li>Classification and organization</li>
+  <li>Prioritization and negotiation</li>
+  <li>Specification</li>
 </ul>  
 <h3>Analysis</h3>  
 <h3>Validation</h3> 
