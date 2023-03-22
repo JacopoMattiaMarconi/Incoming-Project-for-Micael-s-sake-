@@ -5,6 +5,7 @@
   <li>Prioritization and negotiation</li>
   <li>Specification</li>
 </ul>  
-<h3>Analysis</h3>  
+<h3>Analysis</h3>
+     Casi d'uso 
 <h3>Validation</h3> 
 <h3>Management</h3> 
