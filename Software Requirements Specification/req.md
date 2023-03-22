@@ -1,4 +1,4 @@
-<span style="color:blue">Elicitation</span>
+<h3>Elicitation</h3>
 <ul>
   <li>Discovery</li>
   <li>Classification and organization</li>
