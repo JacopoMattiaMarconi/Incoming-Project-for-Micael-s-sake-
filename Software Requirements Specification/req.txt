@@ -1,8 +1,0 @@
-Elicitation
-     Discovery
-     Classification and organization
-     Prioritization and negotiation
-     Specification
-Analysis
-Validation 
-Management 
