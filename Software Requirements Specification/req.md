@@ -6,7 +6,9 @@
   <li>Specification</li>
 </ul>  
 <h3>Analysis</h3>
-     Actors</li>
-     Use cases</li>
+<ul>     
+  <li>Actors</li>
+  <li>Use cases</li>
+</ul>  
 <h3>Validation</h3> 
 <h3>Management</h3> 
