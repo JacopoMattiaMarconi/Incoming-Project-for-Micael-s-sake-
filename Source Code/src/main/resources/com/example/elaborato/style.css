@@ -1,0 +1,14 @@
+.backgroundColor{
+    -fx-background-color: linear-gradient(to right, #AA405C, #6B2E3E);
+}
+
+.textField_box{
+    -fx-background-color: transparent;
+    -fx-border-color: #DEDEE4;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-text-fill: #DEDEE4;
+}
+
+.date_box{
+    -fx-text-fill: #DEDEE4;
+}
