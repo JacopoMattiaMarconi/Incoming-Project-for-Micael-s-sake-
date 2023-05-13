@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backgroundColor" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elaborato.RegistrationController">
+   <children>
+      <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="240.0" VBox.vgrow="ALWAYS">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo2.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" prefHeight="240.0" prefWidth="500.0" text="REGISTRAZIONE" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="50.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="0.44075829383886256" startY="0.5355450236966824">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.8549019694328308" green="0.6470588445663452" blue="0.125490203499794" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.007662835249042145">
+                           <color>
+                              <Color red="0.8549019694328308" green="0.6470588445663452" blue="0.125490203499794" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.5517241379310345">
+                           <color>
+                              <Color red="1.0" green="0.843137264251709" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="0.843137264251709" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="380.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Europe.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="200.0">
+         <children>
+            <TextField fx:id="nameField" prefHeight="50.0" prefWidth="350.0" promptText="Nome">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <TextField fx:id="surnameField" prefHeight="50.0" prefWidth="350.0" promptText="Cognome">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="250.0" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+         <children>
+            <TextField fx:id="cfField" prefHeight="50.0" prefWidth="350.0" promptText="Codice Fiscale">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <DatePicker fx:id="dateField" prefHeight="50.0" prefWidth="150.0" promptText="Data di nascita">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></DatePicker>
+            <TextField fx:id="placeField" prefHeight="50.0" prefWidth="350.0" promptText="Luogo di Nascita">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="450.0" prefHeight="100.0" spacing="200.0">
+         <children>
+            <PasswordField fx:id="password" prefHeight="50.0" prefWidth="350.0" promptText="Password">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </PasswordField>
+            <PasswordField fx:id="passwordConfirm" prefHeight="50.0" prefWidth="350.0" promptText="Conferma Password">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </PasswordField>
+         </children>
+      </HBox>
+      <HBox alignment="BOTTOM_CENTER" prefHeight="100.0">
+         <children>
+            <Button fx:id="registrationButton" disable="true" mnemonicParsing="false" onAction="#registration" prefHeight="50.0" prefWidth="200.0" text="Registrati">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
+      <ImageView fitHeight="100.0" fitWidth="125.0" onMouseClicked="#onBackButtonClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@frecciaIndietro.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+   </children>
+</VBox>

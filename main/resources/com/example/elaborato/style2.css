@@ -1,0 +1,5 @@
+.semiOccupato{
+    -fx-border-width: 10 px;
+    -fx-border-color: #f1c96a;
+    -fx-background-color: #e3e3ab;
+}

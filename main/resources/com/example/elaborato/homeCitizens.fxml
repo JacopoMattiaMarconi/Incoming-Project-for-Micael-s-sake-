@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.elaborato.HomeController">
+   <children>
+      <HBox id="style.css" alignment="CENTER" prefHeight="120.0" spacing="75.0" styleClass="backgroundColor" stylesheets="@style.css">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo2.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="30.0" />
+               </HBox.margin></ImageView>
+            <Label alignment="CENTER" text="PASSAPORTO ELETTRONICO" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="45.0" />
+               </font></Label>
+            <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Europe.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin></ImageView>
+         </children>
+         <effect>
+            <Glow level="0.0" />
+         </effect>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></HBox>
+      <HBox alignment="BOTTOM_LEFT" prefHeight="84.0" prefWidth="1280.0">
+         <children>
+            <Label text="Benvenuto, Carlo Conti">
+               <font>
+                  <Font size="35.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="206.0" prefWidth="1280.0" spacing="60.0">
+         <children>
+            <Button fx:id="richiestaButton" maxHeight="125.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#onRichiestaButtonClick" prefHeight="125.0" prefWidth="257.0" text="Richiesta&#10;passaporto" textAlignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="ritiroButton" layoutX="10.0" layoutY="10.0" maxHeight="122.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#onRitiroButtonClick" prefHeight="125.0" prefWidth="257.0" text="Ritiro &#10;passaporto" textAlignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="69.0" prefWidth="1280.0">
+         <children>
+            <Label text="Prossimi appuntamenti:">
+               <font>
+                  <Font size="35.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="87.0" prefWidth="1280.0">
+         <children>
+            <Label prefHeight="50.0" prefWidth="685.0" text="Prossimamente non hai alcun appuntamento">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="164.0" prefWidth="1280.0">
+         <children>
+            <ImageView fitHeight="63.0" fitWidth="53.0" onMouseClicked="#onLogoutClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logout.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</VBox>
