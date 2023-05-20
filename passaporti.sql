@@ -81,7 +81,8 @@ INSERT INTO `cittadini` (`codiceFiscale`, `nome`, `cognome`, `dataNascita`, `luo
 
 CREATE TABLE `personale` (
   `idPersonale` char(5) NOT NULL,
-  `password` varchar(8) NOT NULL
+  `password` varchar(64) NOT NULL,
+  `salt` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
