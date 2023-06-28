@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 27, 2023 alle 18:14
+-- Creato il: Giu 28, 2023 alle 21:56
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -63,15 +63,33 @@ CREATE TABLE `cittadini` (
   `dataNascita` date NOT NULL,
   `luogoNascita` varchar(30) NOT NULL,
   `password` varchar(64) NOT NULL,
-  `salt` varchar(32) NOT NULL
+  `salt` varchar(32) NOT NULL,
+  `numeroPassaporto` varchar(9) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `cittadini`
 --
 
-INSERT INTO `cittadini` (`codiceFiscale`, `nome`, `cognome`, `dataNascita`, `luogoNascita`, `password`, `salt`) VALUES
-('CNTCRL61C13D612C', 'CARLO', 'CONTI', '1961-03-13', 'FIRENZE', '��?�Y�@\n,})2�l�`vd�S��%����', '>gEG=e76+/:kY?5O;zihbF;d&');
+INSERT INTO `cittadini` (`codiceFiscale`, `nome`, `cognome`, `dataNascita`, `luogoNascita`, `password`, `salt`, `numeroPassaporto`) VALUES
+('CMLFNC01T14L219I', 'CAMILLA', 'FRANCHI', '2001-12-14', 'TORINO', '���@�S��g4��4�G��X�IP\r�ʠ', '=\"Qd!Jno\\T)6lr%IT-g8/;\\@uo', NULL),
+('CNTCRL61C13D612C', 'CARLO', 'CONTI', '1961-03-13', 'FIRENZE', '����y��ӛ|/��Ei.2n��\Z5��*S`��=�', '8Tq\'_C/jBw&Qm-7&5=j7', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `disponibilita`
+--
+
+CREATE TABLE `disponibilita` (
+  `idDisponibilita` int(11) NOT NULL,
+  `slot` int(11) NOT NULL,
+  `dataDisponibilita` date NOT NULL,
+  `oraInizio` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `oraFine` timestamp NOT NULL DEFAULT current_timestamp(),
+  `idSede` int(11) NOT NULL,
+  `codiceFiscaleCittadino` char(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -107,9 +125,9 @@ INSERT INTO `personale` (`idPersonale`, `password`, `salt`) VALUES
 CREATE TABLE `richieste` (
   `idRichiesta` int(11) NOT NULL,
   `codiceFiscaleRichiedente` char(16) NOT NULL,
-  `idSedeAppuntamento` int(11) NOT NULL,
-  `motivoRichiesta` enum('ritiro passaporto','rilascio passaporto per la prima volta','furto','rilascio del passaporto per scadenza del precedente','smarrimento','deterioramento') NOT NULL,
-  `dataAppuntamento` date NOT NULL,
+  `idSedeAppuntamento` int(11) DEFAULT NULL,
+  `motivoRichiesta` enum('Ritiro passaporto','Rilascio passaporto per la prima volta','Furto','Rilascio passaporto per scadenza del precedente','Smarrimento','Deterioramento') NOT NULL,
+  `dataAppuntamento` date DEFAULT NULL,
   `dataRichiesta` date NOT NULL DEFAULT current_timestamp(),
   `statoRichiesta` enum('aperta','in elaborazione','pronta','chiusa') NOT NULL DEFAULT 'aperta'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -119,7 +137,13 @@ CREATE TABLE `richieste` (
 --
 
 INSERT INTO `richieste` (`idRichiesta`, `codiceFiscaleRichiedente`, `idSedeAppuntamento`, `motivoRichiesta`, `dataAppuntamento`, `dataRichiesta`, `statoRichiesta`) VALUES
-(1, 'CNTCRL61C13D612C', 3, 'smarrimento', '2023-08-13', '2023-05-20', 'aperta');
+(8, 'CNTCRL61C13D612C', NULL, 'Smarrimento', '2023-06-06', '2023-05-01', 'chiusa'),
+(9, 'CNTCRL61C13D612C', NULL, 'Ritiro passaporto', NULL, '2023-06-21', 'chiusa'),
+(11, 'CNTCRL61C13D612C', 2, 'Smarrimento', '2023-06-12', '2023-05-08', 'chiusa'),
+(12, 'CNTCRL61C13D612C', NULL, 'Ritiro passaporto', NULL, '2023-06-01', 'chiusa'),
+(13, 'CMLFNC01T14L219I', NULL, 'Furto', NULL, '2023-06-28', 'chiusa'),
+(17, 'CMLFNC01T14L219I', NULL, 'Ritiro passaporto', NULL, '2023-06-28', 'chiusa'),
+(18, 'CNTCRL61C13D612C', NULL, 'Smarrimento', NULL, '2023-06-28', 'aperta');
 
 -- --------------------------------------------------------
 
@@ -165,6 +189,14 @@ ALTER TABLE `cittadini`
   ADD PRIMARY KEY (`codiceFiscale`);
 
 --
+-- Indici per le tabelle `disponibilita`
+--
+ALTER TABLE `disponibilita`
+  ADD PRIMARY KEY (`idDisponibilita`),
+  ADD KEY `idSedeDisponibilita` (`idSede`) USING BTREE,
+  ADD KEY `codicefiscale` (`codiceFiscaleCittadino`);
+
+--
 -- Indici per le tabelle `personale`
 --
 ALTER TABLE `personale`
@@ -175,8 +207,8 @@ ALTER TABLE `personale`
 --
 ALTER TABLE `richieste`
   ADD PRIMARY KEY (`idRichiesta`),
-  ADD UNIQUE KEY `codiceFiscaleRichiedente` (`codiceFiscaleRichiedente`),
-  ADD KEY `idSede` (`idSedeAppuntamento`);
+  ADD KEY `idSede` (`idSedeAppuntamento`),
+  ADD KEY `codiceFiscaleRichiedente` (`codiceFiscaleRichiedente`) USING BTREE;
 
 --
 -- Indici per le tabelle `sedi`
@@ -189,10 +221,16 @@ ALTER TABLE `sedi`
 --
 
 --
+-- AUTO_INCREMENT per la tabella `disponibilita`
+--
+ALTER TABLE `disponibilita`
+  MODIFY `idDisponibilita` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT per la tabella `richieste`
 --
 ALTER TABLE `richieste`
-  MODIFY `idRichiesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idRichiesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT per la tabella `sedi`
@@ -211,10 +249,17 @@ ALTER TABLE `cittadini`
   ADD CONSTRAINT `codiceFiscale` FOREIGN KEY (`codiceFiscale`) REFERENCES `anagrafiche` (`codiceFiscale`);
 
 --
+-- Limiti per la tabella `disponibilita`
+--
+ALTER TABLE `disponibilita`
+  ADD CONSTRAINT `codfisc` FOREIGN KEY (`codiceFiscaleCittadino`) REFERENCES `cittadini` (`codiceFiscale`),
+  ADD CONSTRAINT `sede` FOREIGN KEY (`idSede`) REFERENCES `sedi` (`idSede`);
+
+--
 -- Limiti per la tabella `richieste`
 --
 ALTER TABLE `richieste`
-  ADD CONSTRAINT `codiceFiscaleRichiedente` FOREIGN KEY (`codiceFiscaleRichiedente`) REFERENCES `anagrafiche` (`codiceFiscale`),
+  ADD CONSTRAINT `codiceFiscaleRichiedente` FOREIGN KEY (`codiceFiscaleRichiedente`) REFERENCES `cittadini` (`codiceFiscale`),
   ADD CONSTRAINT `idSede` FOREIGN KEY (`idSedeAppuntamento`) REFERENCES `sedi` (`idSede`);
 COMMIT;
 
