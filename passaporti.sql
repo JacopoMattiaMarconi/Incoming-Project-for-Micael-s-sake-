@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Lug 01, 2023 alle 15:35
+-- Creato il: Lug 05, 2023 alle 16:31
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -34,6 +34,7 @@ CREATE TABLE `anagrafiche` (
   `cognome` varchar(30) NOT NULL,
   `dataNascita` date NOT NULL,
   `luogoNascita` varchar(30) NOT NULL,
+  `provinciaResidenza` varchar(30) NOT NULL,
   `sesso` enum('M','F') NOT NULL,
   `figliMinori` enum('SI','NO') NOT NULL,
   `passaportoDiplomatico` enum('SI','NO') NOT NULL
@@ -43,12 +44,12 @@ CREATE TABLE `anagrafiche` (
 -- Dump dei dati per la tabella `anagrafiche`
 --
 
-INSERT INTO `anagrafiche` (`codiceFiscale`, `tesseraSanitaria`, `nome`, `cognome`, `dataNascita`, `luogoNascita`, `sesso`, `figliMinori`, `passaportoDiplomatico`) VALUES
-('CMLFNC01T14L219I', '39024930', 'CAMILLA', 'FRANCHI', '2001-12-14', 'TORINO', 'F', 'NO', 'NO'),
-('CNTCRL61C13D612C', '20482105', 'CARLO', 'CONTI', '1961-03-13', 'FIRENZE', 'M', 'NO', 'NO'),
-('MNCLNE74D20L781I', '64259640', 'ELENA', 'MANCINI', '1974-04-20', 'VERONA', 'F', 'SI', 'NO'),
-('NCLDRZ63H06G273H', '42902381', 'NICOLA', 'UDERZO', '1963-06-06', 'PALERMO', 'M', 'NO', 'SI'),
-('VLNNDR87E16A794I', '47294739', 'ANDREA', 'VALENTE', '1987-05-16', 'BERGAMO', 'M', 'NO', 'NO');
+INSERT INTO `anagrafiche` (`codiceFiscale`, `tesseraSanitaria`, `nome`, `cognome`, `dataNascita`, `luogoNascita`, `provinciaResidenza`, `sesso`, `figliMinori`, `passaportoDiplomatico`) VALUES
+('CMLFNC01T14L219I', '39024930', 'CAMILLA', 'FRANCHI', '2001-12-14', 'TORINO', 'TORINO', 'F', 'NO', 'NO'),
+('CNTCRL61C13D612C', '20482105', 'CARLO', 'CONTI', '1961-03-13', 'FIRENZE', 'FIRENZE', 'M', 'NO', 'NO'),
+('MNCLNE74D20L781I', '64259640', 'ELENA', 'MANCINI', '1974-04-20', 'VERONA', 'VERONA', 'F', 'SI', 'NO'),
+('NCLDRZ63H06G273H', '42902381', 'NICOLA', 'UDERZO', '1963-06-06', 'PALERMO', 'TORINO', 'M', 'NO', 'SI'),
+('VLNNDR87E16A794I', '47294739', 'ANDREA', 'VALENTE', '1987-05-16', 'BERGAMO', 'BERGAMO', 'M', 'NO', 'NO');
 
 -- --------------------------------------------------------
 
@@ -72,7 +73,7 @@ CREATE TABLE `cittadini` (
 --
 
 INSERT INTO `cittadini` (`codiceFiscale`, `nome`, `cognome`, `dataNascita`, `luogoNascita`, `idSedePreferita`, `password`, `salt`) VALUES
-('CNTCRL61C13D612C', 'CARLO', 'CONTI', '1961-03-13', 'FIRENZE', 2, '�X֕5�q�7J�*��LJqJ	�Y\\|?�B��', '3qs0K,s^?}Tk{YrO$?Iv{[hk');
+('CNTCRL61C13D612C', 'CARLO', 'CONTI', '1961-03-13', 'FIRENZE', 2, ',[��oNt�-3��̉�[��j}~�8=�[�.��', '[I62TPefUbOY%57=q~{?~;q7');
 
 -- --------------------------------------------------------
 
@@ -121,7 +122,7 @@ CREATE TABLE `richieste` (
 
 INSERT INTO `richieste` (`idRichiesta`, `codiceFiscaleRichiedente`, `idSedeAppuntamento`, `motivoRichiesta`, `dataAppuntamento`, `dataRichiesta`, `statoRichiesta`) VALUES
 (1, 'CNTCRL61C13D612C', 3, 'smarrimento', '2023-08-13', '2023-05-20', 'chiusa'),
-(3, 'CNTCRL61C13D612C', 2, 'furto', NULL, '2023-07-01', 'aperta');
+(3, 'CNTCRL61C13D612C', 2, 'furto', NULL, '2023-07-01', 'pronta');
 
 -- --------------------------------------------------------
 
