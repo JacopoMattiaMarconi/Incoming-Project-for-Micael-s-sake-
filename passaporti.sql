@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Lug 06, 2023 alle 23:13
+-- Creato il: Lug 08, 2023 alle 17:07
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -85,20 +85,26 @@ INSERT INTO `cittadini` (`codiceFiscale`, `nome`, `cognome`, `dataNascita`, `luo
 CREATE TABLE `disponibilita` (
   `idDisponibilita` int(11) NOT NULL,
   `dataDisponibilita` date NOT NULL,
-  `oraInizio` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `oraFine` timestamp NOT NULL DEFAULT current_timestamp(),
+  `oraInizio` time NOT NULL,
+  `oraFine` time NOT NULL,
   `idSede` int(11) NOT NULL,
-  `codiceFiscaleCittadino` char(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
+  `codiceFiscaleCittadino` char(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tipologia` enum('Ritiro passaporto','Richiesta passaporto') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dump dei dati per la tabella `disponibilita`
 --
 
-INSERT INTO `disponibilita` (`idDisponibilita`, `dataDisponibilita`, `oraInizio`, `oraFine`, `idSede`, `codiceFiscaleCittadino`) VALUES
-(2, '2023-07-27', '2023-07-27 07:00:00', '2023-07-27 08:00:00', 3, NULL),
-(4, '2023-07-27', '2023-07-27 13:00:00', '2023-07-27 14:00:00', 2, NULL),
-(5, '2023-07-26', '2023-07-06 20:29:53', '2023-07-26 10:00:00', 1, NULL);
+INSERT INTO `disponibilita` (`idDisponibilita`, `dataDisponibilita`, `oraInizio`, `oraFine`, `idSede`, `codiceFiscaleCittadino`, `tipologia`) VALUES
+(2, '2023-07-27', '09:00:00', '10:00:00', 3, 'CNTCRL61C13D612C', 'Ritiro passaporto'),
+(4, '2023-07-27', '15:00:00', '16:00:00', 2, 'CNTCRL61C13D612C', 'Richiesta passaporto'),
+(5, '2023-07-26', '11:00:00', '12:00:00', 1, NULL, 'Ritiro passaporto'),
+(6, '2023-07-30', '17:00:00', '18:00:00', 4, 'CMLFNC01T14L219I', 'Ritiro passaporto'),
+(7, '2023-07-31', '08:00:00', '09:00:00', 4, 'CMLFNC01T14L219I', 'Richiesta passaporto'),
+(8, '2023-07-23', '08:00:00', '09:00:00', 4, 'CMLFNC01T14L219I', 'Ritiro passaporto'),
+(9, '2023-07-24', '08:00:00', '09:00:00', 4, 'CMLFNC01T14L219I', 'Richiesta passaporto'),
+(10, '2023-07-19', '16:00:00', '17:00:00', 4, 'CMLFNC01T14L219I', 'Richiesta passaporto');
 
 -- --------------------------------------------------------
 
@@ -146,14 +152,13 @@ CREATE TABLE `richieste` (
 --
 
 INSERT INTO `richieste` (`idRichiesta`, `codiceFiscaleRichiedente`, `idSedeAppuntamento`, `motivoRichiesta`, `dataAppuntamento`, `dataRichiesta`, `statoRichiesta`) VALUES
-(8, 'CNTCRL61C13D612C', NULL, 'Smarrimento', '2023-06-06', '2023-05-01', 'chiusa'),
-(9, 'CNTCRL61C13D612C', NULL, 'Ritiro passaporto', NULL, '2023-06-21', 'chiusa'),
-(11, 'CNTCRL61C13D612C', 2, 'Smarrimento', '2023-06-12', '2023-05-08', 'chiusa'),
-(12, 'CNTCRL61C13D612C', NULL, 'Ritiro passaporto', NULL, '2023-06-01', 'chiusa'),
-(13, 'CMLFNC01T14L219I', NULL, 'Furto', NULL, '2023-06-28', 'chiusa'),
-(17, 'CMLFNC01T14L219I', NULL, 'Ritiro passaporto', NULL, '2023-06-28', 'chiusa'),
-(18, 'CNTCRL61C13D612C', NULL, 'Smarrimento', NULL, '2023-06-28', 'aperta'),
-(19, 'CMLFNC01T14L219I', NULL, 'Rilascio passaporto per la prima volta', NULL, '2023-06-29', 'aperta');
+(26, 'CNTCRL61C13D612C', 2, 'Furto', '2023-07-27', '2023-07-08', 'chiusa'),
+(27, 'CNTCRL61C13D612C', 3, 'Ritiro passaporto', '2023-07-27', '2023-07-08', 'chiusa'),
+(28, 'CMLFNC01T14L219I', 4, 'Deterioramento', '2023-07-31', '2023-07-08', 'chiusa'),
+(29, 'CMLFNC01T14L219I', 4, 'Ritiro passaporto', '2023-07-30', '2023-07-08', 'chiusa'),
+(30, 'CMLFNC01T14L219I', 4, 'Smarrimento', '2023-07-24', '2023-07-08', 'chiusa'),
+(31, 'CMLFNC01T14L219I', 4, 'Ritiro passaporto', '2023-07-23', '2023-07-08', 'chiusa'),
+(32, 'CMLFNC01T14L219I', 4, 'Rilascio passaporto per scadenza del precedente', '2023-07-19', '2023-07-08', 'pronta');
 
 -- --------------------------------------------------------
 
@@ -179,7 +184,8 @@ CREATE TABLE `sedi` (
 INSERT INTO `sedi` (`idSede`, `nomeSede`, `comuneSede`, `provinciaSede`, `indirizzoSede`, `numeroCivicoSede`, `telefono`, `CAP`) VALUES
 (1, 'Questura di Verona', 'Verona', 'Verona', 'Lungadige Antonio Galtarossa', 11, '0458090490', '37133'),
 (2, 'Questura di Firenze', 'Firenze', 'Firenze', 'via della Fortezza', 17, '0554977602', '50129'),
-(3, 'Commissariato P.S. Rifredi', 'Firenze', 'Firenze', 'via Sgambati ', 21, '0554977602', '50129');
+(3, 'Commissariato P.S. Rifredi', 'Firenze', 'Firenze', 'via Sgambati ', 21, '0554977602', '50129'),
+(4, 'Questura di Torino', 'Torino', 'Torino', 'Piazza Re Umberto I', 3, '042039394', '10039');
 
 --
 -- Indici per le tabelle scaricate
@@ -234,19 +240,19 @@ ALTER TABLE `sedi`
 -- AUTO_INCREMENT per la tabella `disponibilita`
 --
 ALTER TABLE `disponibilita`
-  MODIFY `idDisponibilita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idDisponibilita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT per la tabella `richieste`
 --
 ALTER TABLE `richieste`
-  MODIFY `idRichiesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idRichiesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT per la tabella `sedi`
 --
 ALTER TABLE `sedi`
-  MODIFY `idSede` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idSede` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Limiti per le tabelle scaricate
