@@ -1,0 +1,9 @@
+Cose che mancano:
+Diagramma casi d'uso (controlla)
+casi d'uso personale ( fa Nadia domani)
+diagramma attività personale (fa Nadia domani)
+Chiavi esterne nelle tabelle(?)
+Sviluppo: progetto dell’architettura ed implementazione del sistema
+commento interfaccie
+Diagramma classi
+Diagrammi di sequenza del software implementato
