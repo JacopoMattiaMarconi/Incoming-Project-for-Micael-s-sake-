@@ -2,7 +2,7 @@ Cose che mancano:
 Diagramma casi d'uso (controlla)
 casi d'uso personale ( fa Nadia domani)
 diagramma attività personale (fa Nadia domani)
-Chiavi esterne nelle tabelle(?)
+Chiavi esterne nelle tabelle(?)                  -> si vedono da mysql con xampp
 Sviluppo: progetto dell’architettura ed implementazione del sistema
 commento interfaccie
 Diagramma classi
